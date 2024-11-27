@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="../Components/bootstrap.min.css">
+    <link href="https://cdn.datatables.net/v/bs5/dt-2.1.8/datatables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<style>
+</style>
+
+
+
+<body>
+    <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">Empresa</a>
+
+        <ul class="navbar-nav flex-row d-md-none">
+            <li class="nav-item text-nowrap">
+                <button class="nav-link px-3 text-white" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false"
+                    aria-label="Toggle search">
+                </button>
+            </li>
+            <li class="nav-item text-nowrap">
+                <button class="nav-link px-3 text-white" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                </button>
+            </li>
+        </ul>
+
+        <div id="navbarSearch" class="navbar-search w-100 collapse">
+            <input class="form-control w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary" data-bs-theme="dark">
+                <div class="offcanvas-md offcanvas-end bg-body-tertiary" style="height: 100vh;" tabindex="-1"
+                    id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="sidebarMenuLabel">Empresa</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                            data-bs-target="#sidebarMenu" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-2 w-100 active" href=""
+                                    aria-current="page">
+                                    <i class="fa-solid fa-house"></i> Productos
+                                </a>
+                            </li>
+                            <hr class="my-3">
+
+                            <ul class="nav flex-column mb-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex align-items-center gap-2" href="#">
+                                        Settings
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <button class="nav-link text-white-50 w-100 d-flex align-items-center gap-2"
+                                        onclick="LogOut()">
+                                        <i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal"></i> Salir
+                                    </button>
+                                </li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-5">
+                <h1 class="text-center fw-bold my-5">Listado de productos</h1>
+                <button class="btn btn-primary mb-3" data-bs-target="#crearProducto" data-bs-toggle="modal">Agregar
+                    producto <i class="fa-solid fa-plus"></i></button>
+                <button onclick="Lol()">HOLA</button>
+                <table class="table table-striped table-hover table-bordered" id="tablaProductos">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Descripcion</th>
+                            <th>Etiqueta</th>
+                            <th>Imagen</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    </tbody>
+                </table>
+
+            </main>
+        </div>
+    </div>
+    <div class="modal fade" id="crearProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <form id="formCrearProducto" class="needs-validation" novalidate>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Agregar producto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="alerta" class="alert alert-danger visually-hidden">
+
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" required>
+                            <label for="nombre">Nombre del producto</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea name="descripcion" id="descripcion" required class="form-control"
+                                placeholder=""></textarea>
+                            <label for="descripcion">Descripcion del producto</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="number" maxlength="10" min="0" class="form-control" name="precio" id="precio"
+                                placeholder="" required>
+                            <label for="precio">Precio del producto</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select name="etiqueta" class="form-select" required id="etiqueta">
+                                <option value="">Seleccione una etiqueta</option>
+                                <option value="nuevo">Nuevo</option>
+                                <option value="En Promocion">En Promocion</option>
+                            </select>
+                            <label for="etiqueta">Etiqueta</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="imagen" class="form-label">Imagen</label>
+                            <input required class="form-control" name="imagen" accept=".jpg, .jpeg, .png" type="file"
+                                id="imagen">
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" maxlength="20" name="tamaño" minlength="5" class="form-control"
+                                id="tamaño" placeholder="" required>
+                            <label for="tamaño">Tamaño del producto</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Agregar <i class="fa-solid fa-plus"></i> </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./script.js">
+    </script>
+    <script src="../Components/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/dt-2.1.8/datatables.min.js"></script>
+    <script src="../Components/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -3,7 +3,7 @@ function cargarProductos() {
         .then((response) => response.json())
         .then((data) => {
             const portfolio = document.getElementById("portfolio");
-            data.forEach((producto) => {
+            data.data.forEach((producto) => {
                 const div = document.createElement("div");
                 div.classList.add("col-xs-12", "col-sm-4", `${producto.Etiqueta.split(" ").join("")}`
                 );
@@ -19,6 +19,9 @@ function cargarProductos() {
         });
 }
 
+
 document.addEventListener("DOMContentLoaded", (e) => {
     cargarProductos();
 });
+
+

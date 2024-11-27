@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/mobile.css" />
-
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
     <link rel="stylesheet" href="css/skin/cool-gray.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
@@ -56,7 +56,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="page-scroll fw-bold" href="#" style="
+                        <a class="page-scroll fw-bold" href="body" style="
                   font-size: 50px;
                   color: white;
                   font-weight: bold;
@@ -138,8 +138,9 @@
 
                         <div class="col-md-3">
                             <div class="cta-btn wow bounceInRight" data-wow-delay="0.4s">
-                                <a class="btn btn-default btn-lg" href="http://www.imransdesign.com/" target="_blank"
-                                    role="button">Descargar <i class="fa-solid fa-download"></i></a>
+                                <button class="btn btn-default btn-lg" onclick="window.location.href = './singIn.html'"
+                                    target="_blank" role="button">Descargar <i
+                                        class="fa-solid fa-download"></i></button>
                             </div>
                         </div>
                     </div>
@@ -272,6 +273,7 @@
     <!-- body ends -->
 
     <!-- Plugins JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./script.js"></script>
     <script src="inc/jquery/jquery-1.11.1.min.js"></script>
     <script src="inc/bootstrap/js/bootstrap.min.js"></script>
