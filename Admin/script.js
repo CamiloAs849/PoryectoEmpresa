@@ -19,24 +19,23 @@ function LogOut() {
     });
 }
 
-function cargarProductos() {
-    fetch('../api.php')
+function cargarCalzado() {
+    fetch('../api.php?calzado=true')
         .then(response => response.json())
         .then(data => {
             const tbody = document.getElementById('tbody');
-            var html = '';
-            data.data.forEach(producto => {
+            data.forEach(producto => {
                 var tr = document.createElement('tr');
                 tr.innerHTML = `<tr>
-                                    <td>${producto.ProductoID}</td>
-                                    <td>${producto.NombreProducto}</td>
+                                    <td>${producto.NombreCalzado}</td>
                                     <td>$ ${Intl.NumberFormat().format(producto.Precio)}</td>
-                                    <td>${producto.Descripcion}</td>
+                                    <td>${producto.Talla}</td>
+                                     <td>${producto.Tipo}</td>
                                      <td>${producto.Etiqueta}</td>
-                                    <td><img src="../imagenes/${producto.imagen}" width="100px"></td>
+                                    <td><img src="../imagenes/Calzado/${producto.Imagen}" width="100px"></td>
                                     <td><div class="d-flex mt-4 d-flex justify-content-around">
-                                        <button class="btn btn-sm btn-warning me-2" onclick="editarProducto(${producto.ProductoID})">Editar</button>
-                                        <button class="btn btn-sm btn-danger" onclick="eliminarProducto(${producto.ProductoID})">Eliminar</button>
+                                        <button class="btn btn-sm btn-warning me-2" onclick="editarCalzado(${producto.ID})">Editar</button>
+                                        <button class="btn btn-sm btn-danger" onclick="eliminarCalzado(${producto.ID})">Eliminar</button>
                                         </div>
                                     </td>
                                 </tr>`;
@@ -55,13 +54,13 @@ function cargarProductos() {
                 language: {
                     processing: "",
                     search: "<i class='fa-solid fa-magnifying-glass'></i> Buscar&nbsp;:",
-                    lengthMenu: "Agrupar de _MENU_ productos",
-                    info: "Mostrando del producto _START_ al _END_ de un total de _TOTAL_ productos",
+                    lengthMenu: "Agrupar de _MENU_ Zapatos",
+                    info: "Mostrando del zapato _START_ al _END_ de un total de _TOTAL_ zapatos",
                     infoEmpty: "No existen datos.",
                     infoFiltered: "(filtrado de _MAX_ productos en total)",
                     infoPostFix: "",
                     loadingRecords: "Cargando...",
-                    zeroRecords: "No se encontraron productos con tu busqueda",
+                    zeroRecords: "No se encontraron zapatos con tu busqueda",
                     emptyTable: "No hay datos disponibles en la tabla.",
                     paginate: {
                         previous: "<i class='fa-solid fa-arrow-left'></i> Anterior",
@@ -81,7 +80,7 @@ function cargarProductos() {
 }
 
 document.addEventListener("DOMContentLoaded", event => {
-    cargarProductos();
+    cargarCalzado();
 })
 
 localStorage.setItem('num', 1);
@@ -100,69 +99,107 @@ if (localStorage.getItem('num') === 1) {
     localStorage.setItem('num', 2);
 }
 
-(() => {
-    'use strict'
 
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    const forms = document.querySelectorAll('.needs-validation')
 
-    // Loop over them and prevent submission
-    Array.from(forms).forEach(form => {
-        form.addEventListener('submit', event => {
-            if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
-            } else {
-                event.preventDefault();
-                const formData = new FormData(document.getElementById('formCrearProducto'))
-                fetch("../api.php", {
-                    method: 'POST',
-                    body: formData
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data == 'Error al agregar el producto') {
-                            Swal.fire({
-                                title: 'Error al agregar el producto',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500,
-                                timerProgressBar: true
-                            })
-                        } else if (data == 'Error al subir la imagen') {
-                            Swal.fire({
-                                title: 'Error al subir la imagen',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500,
-                                timerProgressBar: true
-                            })
-                        } else {
-                            Swal.fire({
-                                title: 'Producto agregado correctamente',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500,
-                                timerProgressBar: true
-                            }).then(function () {
-                                resetForm();
-                                $('#crearProducto').modal('hide');
-                            });
-                        }
+// Fetch all the forms we want to apply custom Bootstrap validation styles to
+var form = document.getElementById('formCrearCalzado')
+
+// Loop over them and prevent submission
+form.addEventListener('submit', event => {
+    if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+    } else {
+        event.preventDefault();
+        const formData = new FormData(document.getElementById('formCrearCalzado'))
+        fetch("../api.php", {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data == 'Error al agregar el producto') {
+                    Swal.fire({
+                        title: 'Error al agregar el producto',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                        timerProgressBar: true
                     })
-            }
+                } else if (data == 'Error al subir la imagen') {
+                    Swal.fire({
+                        title: 'Error al subir la imagen',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                        timerProgressBar: true
+                    })
+                } else {
+                    Swal.fire({
+                        title: 'Producto agregado correctamente',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                        timerProgressBar: true
+                    }).then(function () {
+                        window.location.reload();
+                    });
+                }
+            })
+    }
 
-            form.classList.add('was-validated')
-        }, false)
-    })
-})()
+    form.classList.add('was-validated')
+}, false)
 
-function resetForm() {
-    document.getElementById('formCrearProducto').reset();
+
+
+// Fetch all the forms we want to apply custom Bootstrap validation styles to
+var formEditar = document.getElementById('formEditarCalzado')
+
+// Loop over them and prevent submission
+formEditar.addEventListener('submit', event => {
+    if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+    } else {
+        event.preventDefault()
+        const formData = new FormData(document.getElementById('formEditarCalzado'))
+        fetch('../api.php', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            })
+    }
+
+    formEditar.classList.add('was-validated')
+}, false)
+
+
+
+
+function editarCalzado(id) {
+    fetch(`../api.php?calzado=calzado&id=${id}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('idEditar').value = data.ID;
+            document.getElementById('nombreEditar').value = data.NombreCalzado;
+            document.getElementById('precioEditar').value = data.Precio;
+            document.getElementById('tallaEditar').value = data.Talla;
+            document.getElementById('tipoEditar').value = data.Tipo;
+            var imagen = document.getElementById('ImagenEditar');
+            imagen.src = '../imagenes/Calzado/' + data.Imagen;
+            document.getElementById('etiquetaEditar').value = data.Etiqueta;
+            document.getElementById('nombreImagen').value = data.Imagen
+        });
+    var modal = new bootstrap.Modal(document.getElementById('EditarCalzado'));
+    modal.show();
 }
 
 
-function eliminarProducto(id) {
+function eliminarCalzado(id) {
     Swal.fire({
         title: "¿Estás seguro de eliminar el producto?",
         icon: "question",
@@ -173,12 +210,15 @@ function eliminarProducto(id) {
         cancelButtonText: "Cancelar"
     }).then((result) => {
         if (result.isConfirmed) {
+            var tabla = 'calzado';
             fetch('../api.php', {
                 method: 'DELETE',
-                body: `id=${id}`
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tabla, id })
             })
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data)
                     if (data == 'Error al eliminar el producto') {
                         Swal.fire({
                             title: 'Error al eliminar el producto',

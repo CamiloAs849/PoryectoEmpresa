@@ -618,17 +618,24 @@ a.rotate-box-2:hover {
   transform: scale(1);
   opacity: 1;
 }
-.portfolio_single_content div a {
+.portfolio_single_content div h3 {
   color: #ffffff;
   display: block;
   font-size: 18px;
   font-weight: bold;
-  margin-top: 40%;
   padding-bottom: 10px;
   text-decoration: none;
   text-transform: uppercase;
 }
 .portfolio_single_content div span {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+.portfolio_single_content div p {
   color: #ffffff;
   font-size: 14px;
   font-weight: normal;
