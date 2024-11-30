@@ -42,11 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         } else {
             echo json_encode("Usuario o contraseña incorrectos");
         }
-    } else if (isset($_GET['calzado'])) {
+    } else if (isset($_GET['tabla'])) {
+        $tabla = $_GET['tabla'];
 
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $sql = "SELECT * FROM calzado WHERE ID =?";
+            $sql = "SELECT * FROM $tabla WHERE ID =?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param('i', $id);
             $stmt->execute();
@@ -58,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 echo json_encode("Calzado no encontrado");
             }
         } else {
-            $sql = "SELECT * FROM calzado";
+            $sql = "SELECT * FROM $tabla";
             $result = $conn->query($sql);
             $rows = array();
             while ($row = $result->fetch_assoc()) {
@@ -76,24 +77,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $talla = $_POST['talla'];
         $tipo = $_POST['tipo'];
         $etiqueta = $_POST['etiqueta'];
-        if (isset($_FILES['Imagen']['name']) && $_FILES['Imagen']['name'] != "") {
+        if (isset($_FILES['imagen']['name']) && $_FILES['imagen']['name'] != "") {
             unlink('./imagenes/calzado/' . $_POST['nombreImagen']);
-            $imagen = $_FILES['Imagen'];
+            $imagen = $_FILES['imagen'];
             $nombreImagen = $imagen['name'];
             $path = $_SERVER['DOCUMENT_ROOT'] . './imagenes/calzado/' . $nombreImagen;
             if (!move_uploaded_file($imagen['tmp_name'], $path)) {
                 echo json_encode("Error al subir la imagen");
+            } else {
             }
         } else {
             $nombreImagen = $_POST['nombreImagen'];
-            $sql = "UPDATE calzado SET NombreCalzado =?, Precio =?, Talla =?, Tipo =?, Etiqueta =?, Imagen = ? WHERE ID = $id";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param('ssssss', $nombre, $precio, $talla, $tipo, $etiqueta, $imagen);
-            if ($stmt->execute()) {
-                echo json_encode("Producto actualizado correctamente");
-            } else {
-                echo json_encode("Error al actualizar el producto");
-            }
+        }
+        $sql = "UPDATE calzado SET NombreCalzado =?, Precio =?, Talla =?, Tipo =?, Etiqueta =?, Imagen = ? WHERE ID = $id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('ssssss', $nombre, $precio, $talla, $tipo, $etiqueta, $nombreImagen);
+        if ($stmt->execute()) {
+            echo json_encode("Producto actualizado correctamente");
+        } else {
+            echo json_encode("Error al actualizar el producto");
         }
     } else {
         $nombre = $_POST['nombre'];

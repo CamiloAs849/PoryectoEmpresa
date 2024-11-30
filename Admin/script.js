@@ -20,7 +20,7 @@ function LogOut() {
 }
 
 function cargarCalzado() {
-    fetch('../api.php?calzado=true')
+    fetch('../api.php?tabla=calzado')
         .then(response => response.json())
         .then(data => {
             const tbody = document.getElementById('tbody');
@@ -83,8 +83,7 @@ document.addEventListener("DOMContentLoaded", event => {
     cargarCalzado();
 })
 
-localStorage.setItem('num', 1);
-if (localStorage.getItem('num') === 1) {
+if (localStorage.getItem('num')) {
     const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -96,13 +95,17 @@ if (localStorage.getItem('num') === 1) {
         icon: "success",
         title: "Has entrado como administrador"
     });
-    localStorage.setItem('num', 2);
+    localStorage.removeItem('num');
 }
-
 
 
 // Fetch all the forms we want to apply custom Bootstrap validation styles to
 var form = document.getElementById('formCrearCalzado')
+
+document.getElementById('crearCalzado').addEventListener('hidden.bs.modal', function () {
+    form.classList.remove('was-validated');
+});
+
 
 // Loop over them and prevent submission
 form.addEventListener('submit', event => {
@@ -154,11 +157,16 @@ form.addEventListener('submit', event => {
 
 
 // Fetch all the forms we want to apply custom Bootstrap validation styles to
-var formEditar = document.getElementById('formEditarCalzado')
+var formEditar = document.getElementById('formEditarCalzado');
+document.getElementById('EditarCalzado').addEventListener('hidden.bs.modal', function () {
+    formEditar.reset();
+    formEditar.classList.remove('was-validated');
+    document.getElementById('ImagenEditar').src = '';
+});
 
 // Loop over them and prevent submission
 formEditar.addEventListener('submit', event => {
-    if (!form.checkValidity()) {
+    if (!formEditar.checkValidity()) {
         event.preventDefault()
         event.stopPropagation()
     } else {
@@ -170,7 +178,34 @@ formEditar.addEventListener('submit', event => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                if (data == 'Error al subir la imagen') {
+                    Swal.fire({
+                        title: 'Error al subir la imagen',
+                        icon: 'question',
+                        showConfirmButton: false,
+                        timer: 1500,
+                        timerProgressBar: true
+                    })
+                } else if (data == 'Error al actualizar el producto') {
+                    Swal.fire({
+                        title: 'Error al actualizar el producto',
+                        icon: 'danger',
+                        showConfirmButton: false,
+                        timer: 1500,
+                        timerProgressBar: true
+                    })
+                } else {
+                    Swal.fire({
+                        title: 'Producto actualizado correctamente',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                        timerProgressBar: true
+                    }).then(function () {
+                        window.location.reload();
+                    });
+                }
+
             })
     }
 
@@ -181,7 +216,7 @@ formEditar.addEventListener('submit', event => {
 
 
 function editarCalzado(id) {
-    fetch(`../api.php?calzado=calzado&id=${id}`)
+    fetch(`../api.php?tabla=calzado&id=${id}`)
         .then(response => response.json())
         .then(data => {
             document.getElementById('idEditar').value = data.ID;

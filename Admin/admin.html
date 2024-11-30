@@ -55,19 +55,44 @@
                     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2 w-100 active" href=""
+                                <a class="nav-link d-flex align-items-center gap-2 w-100 active" href="./admin.html"
                                     aria-current="page">
-                                    <i class="fa-solid fa-house"></i> Productos
+                                    <i class="fa-solid fa-shoe-prints"></i> Calzado
                                 </a>
                             </li>
-                            <hr class="my-3">
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-2 w-100  text-white-50" href=""
+                                    aria-current="page">
+                                    <i class="fa-solid fa-shirt"></i> Camisas
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-2 w-100 text-white-50" href=""
+                                    aria-current="page">
+                                    <i class="fa-solid fa-shirt"></i> Pantalones
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-2 w-100  text-white-50" href=""
+                                    aria-current="page">
+                                    <i class="fa-solid fa-glasses"></i> Gafas
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-2 w-100  text-white-50" href=""
+                                    aria-current="page">
+                                    <i class="fa-solid fa-clock"></i> Relojes
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-2 w-100  text-white-50" href=""
+                                    aria-current="page">
+                                    <i class="fa-solid fa-wine-bottle"></i> Perfumes
+                                </a>
+                            </li>
+                            <hr class="my-3" style="color: white;">
 
                             <ul class="nav flex-column mb-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center gap-2" href="#">
-                                        Settings
-                                    </a>
-                                </li>
                                 <li class="nav-item">
                                     <button class="nav-link text-white-50 w-100 d-flex align-items-center gap-2"
                                         onclick="LogOut()">
@@ -121,8 +146,8 @@
                             <label for="nombre">Nombre</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="number" min="1000" maxlength="20" name="precio" id="precio" required
-                                class="form-control">
+                            <input type="number" min="1000" maxlength="20" name="precio" id="precio" placeholder=""
+                                required class="form-control">
                             <label for="precio">Precio</label>
                         </div>
                         <div class="form-floating mb-3">
@@ -150,8 +175,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="imagen" class="form-label">Imagen</label>
-                            <input required class="form-control" name="imagen" accept=".jpg, .jpeg, .png" type="file"
-                                id="imagen">
+                            <input required class="form-control" name="imagen" accept=".jpg, .jpeg, .png, .webp"
+                                type="file" id="imagen">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -183,7 +208,7 @@
                             <label for="nombre">Nombre</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="number" maxlength="20" name="precio" id="precioEditar" required
+                            <input type="number" maxlength="20" placeholder="" name="precio" id="precioEditar" required
                                 class="form-control">
                             <label for="precio">Precio</label>
                         </div>
@@ -212,13 +237,13 @@
                         </div>
                         <div class="mb-3">
                             <label for="imagen" class="form-label">Imagen</label>
-                            <input class="form-control" name="imagen" accept=".jpg, .jpeg, .png" type="file"
+                            <input class="form-control" name="imagen" accept=".jpg, .jpeg, .png, .webp" type="file"
                                 id="imagen">
                             <img src="" class="mt-3" alt="" width="150px" id="ImagenEditar">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Agregar <i class="fa-solid fa-plus"></i> </button>
+                        <button type="submit" class="btn btn-primary">Guardar <i class="fa-solid fa-plus"></i> </button>
                     </div>
                 </form>
             </div>
