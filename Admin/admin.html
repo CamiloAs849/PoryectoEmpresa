@@ -24,15 +24,9 @@
 
         <ul class="navbar-nav flex-row d-md-none">
             <li class="nav-item text-nowrap">
-                <button class="nav-link px-3 text-white" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false"
-                    aria-label="Toggle search">
-                </button>
-            </li>
-            <li class="nav-item text-nowrap">
                 <button class="nav-link px-3 text-white" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                    aria-label="Toggle navigation"><i class="fa-solid fa-bars" style="color: #ffffff;"></i>
                 </button>
             </li>
         </ul>
@@ -43,7 +37,9 @@
     </header>
 
     <div class="container-fluid">
+        <a href="#" class="btn btn-dark buttonFloat"><i class="fa-solid fa-arrow-up"></i></a>
         <div class="row">
+
             <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary" data-bs-theme="dark">
                 <div class="offcanvas-md offcanvas-end bg-body-tertiary" style="height: 100vh;" tabindex="-1"
                     id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
@@ -53,7 +49,7 @@
                             data-bs-target="#sidebarMenu" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
-                        <ul class="nav flex-column">
+                        <ul class=" nav flex-column ">
                             <li class="nav-item">
                                 <a class="nav-link d-flex align-items-center gap-2 w-100 active" href="./admin.html"
                                     aria-current="page">
@@ -61,32 +57,32 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2 w-100  text-white-50" href=""
-                                    aria-current="page">
+                                <a class="nav-link d-flex align-items-center gap-2 w-100  text-white-50"
+                                    href="./camisas.html" aria-current="page">
                                     <i class="fa-solid fa-shirt"></i> Camisas
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2 w-100 text-white-50" href=""
-                                    aria-current="page">
+                                <a class="nav-link d-flex align-items-center gap-2 w-100 text-white-50"
+                                    href="./pantalones.html" aria-current="page">
                                     <i class="fa-solid fa-shirt"></i> Pantalones
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2 w-100  text-white-50" href=""
-                                    aria-current="page">
+                                <a class="nav-link d-flex align-items-center gap-2 w-100  text-white-50"
+                                    href="./gafas.html" aria-current="page">
                                     <i class="fa-solid fa-glasses"></i> Gafas
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2 w-100  text-white-50" href=""
-                                    aria-current="page">
+                                <a class="nav-link d-flex align-items-center gap-2 w-100  text-white-50"
+                                    href="./relojes.html" aria-current="page">
                                     <i class="fa-solid fa-clock"></i> Relojes
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2 w-100  text-white-50" href=""
-                                    aria-current="page">
+                                <a class="nav-link d-flex align-items-center gap-2 w-100  text-white-50"
+                                    href="./perfumes.html" aria-current="page">
                                     <i class="fa-solid fa-wine-bottle"></i> Perfumes
                                 </a>
                             </li>
@@ -113,7 +109,7 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Precio</th>
-                            <th>Talla</th>
+                            <th>Tallas</th>
                             <th>Tipo</th>
                             <th>Etiqueta</th>
                             <th>Imagen</th>
@@ -141,7 +137,7 @@
 
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" maxlength="50" class="form-control" id="nombre" name="nombre"
+                            <input type="text" maxlength="100" class="form-control" id="nombre" name="nombre"
                                 placeholder="" required>
                             <label for="nombre">Nombre</label>
                         </div>
@@ -151,9 +147,9 @@
                             <label for="precio">Precio</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="number" maxlength="2" min="0" class="form-control" name="talla" id="talla"
-                                placeholder="" required>
-                            <label for="talla">Talla</label>
+                            <input type="text" maxlength="100" pattern="^(\d{2}, )*\d{2}$" class="form-control"
+                                name="talla" id="talla" placeholder="" required>
+                            <label for="talla">Tallas</label>
                         </div>
                         <div class="form-floating mb-3">
                             <select name="tipo" class="form-select" required id="tipo">
@@ -200,10 +196,11 @@
                         <div id="alerta" class="alert alert-danger visually-hidden">
 
                         </div>
+                        <input type="hidden" name="calzado" value="1">
                         <input type="hidden" name="id" id="idEditar">
                         <input type="hidden" name="nombreImagen" id="nombreImagen">
                         <div class="form-floating mb-3">
-                            <input type="text" maxlength="50" class="form-control" id="nombreEditar" name="nombre"
+                            <input type="text" maxlength="100" class="form-control" id="nombreEditar" name="nombre"
                                 placeholder="" required>
                             <label for="nombre">Nombre</label>
                         </div>
@@ -213,9 +210,9 @@
                             <label for="precio">Precio</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="number" maxlength="2" min="0" class="form-control" name="talla"
-                                id="tallaEditar" placeholder="" required>
-                            <label for="talla">Talla</label>
+                            <input type="text" maxlength="100" class="form-control" name="talla" id="tallaEditar"
+                                placeholder="" pattern="^(\d{2}, )*\d{2}$" required>
+                            <label for="talla">Tallas</label>
                         </div>
                         <div class="form-floating mb-3">
                             <select name="tipo" class="form-select" required id="tipoEditar">
@@ -251,7 +248,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="./script.js">
+    <script src="./JavaScript/scriptsCalzado.js">
     </script>
     <script src="../Components/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/v/bs5/dt-2.1.8/datatables.min.js"></script>

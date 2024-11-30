@@ -155,7 +155,7 @@ $(window).load(function () {
         itemSelector: '.col-sm-4',
         layoutMode: 'fitRows'
     });
-    $('#filters').on('click', 'a', function () {
+    $('#filtersZapato').on('click', 'a', function () {
         var filterValue = $(this).attr('data-filter');
         $container.isotope({ filter: filterValue });
         return false;
@@ -172,7 +172,7 @@ $(window).load(function () {
         itemSelector: '.col-sm-4',
         layoutMode: 'fitRows'
     });
-    $('#filters').on('click', 'a', function () {
+    $('#filtersCamisa').on('click', 'a', function () {
         var filterValue = $(this).attr('data-filter');
         $container.isotope({ filter: filterValue });
         return false;
@@ -189,7 +189,7 @@ $(window).load(function () {
         itemSelector: '.col-sm-4',
         layoutMode: 'fitRows'
     });
-    $('#filters').on('click', 'a', function () {
+    $('#filtersPantalon').on('click', 'a', function () {
         var filterValue = $(this).attr('data-filter');
         $container.isotope({ filter: filterValue });
         return false;
@@ -202,12 +202,29 @@ $(window).load(function () {
         $(this).addClass('active_prot_menu');
     });
 
+    var $container = $('#portfolioRelojes');
+    $container.isotope({
+        itemSelector: '.col-sm-4',
+        layoutMode: 'fitRows'
+    });
+    $('#filtersRelojes').on('click', 'a', function () {
+        var filterValue = $(this).attr('data-filter');
+        $container.isotope({ filter: filterValue });
+        return false;
+    });
+});
+$(window).load(function () {
+    $('.portfolio_menu ul li').click(function () {
+        $('.portfolio_menu ul li').removeClass('active_prot_menu');
+        $(this).addClass('active_prot_menu');
+    });
+
     var $container = $('#portfolioGafas');
     $container.isotope({
         itemSelector: '.col-sm-4',
         layoutMode: 'fitRows'
     });
-    $('#filters').on('click', 'a', function () {
+    $('#filtersGafas').on('click', 'a', function () {
         var filterValue = $(this).attr('data-filter');
         $container.isotope({ filter: filterValue });
         return false;
@@ -224,7 +241,7 @@ $(window).load(function () {
         itemSelector: '.col-sm-4',
         layoutMode: 'fitRows'
     });
-    $('#filters').on('click', 'a', function () {
+    $('#filtersPerfumes').on('click', 'a', function () {
         var filterValue = $(this).attr('data-filter');
         $container.isotope({ filter: filterValue });
         return false;
