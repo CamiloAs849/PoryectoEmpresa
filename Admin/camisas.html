@@ -108,6 +108,7 @@
                             <th>Precio</th>
                             <th>Tallas</th>
                             <th>Color</th>
+                            <th>Sexo</th>
                             <th>Tipo</th>
                             <th>Etiqueta</th>
                             <th>Imagen</th>
@@ -163,6 +164,15 @@
                             <label for="tipo">Tipo</label>
                         </div>
                         <div class="form-floating mb-3">
+                            <select name="sexo" class="form-select" required id="sexo">
+                                <option value="">Seleccione un Sexo</option>
+                                <option value="Mujer">Mujer</option>
+                                <option value="Hombre">Hombre</option>
+                                <option value="Unisex">Unisex</option>
+                            </select>
+                            <label for="sexo">sexo</label>
+                        </div>
+                        <div class="form-floating mb-3">
                             <select name="etiqueta" class="form-select" required id="etiqueta">
                                 <option value="">Seleccione una etiqueta</option>
                                 <option value="Nuevo">Nuevo</option>
@@ -191,7 +201,7 @@
                 <form id="formEditarCamisa" class="needs-validation" novalidate>
                     <input type="hidden" name="camisa" value="1">
                     <div class="modal-header">
-                        <h5 class="modal-title">Editar Zapato</h5>
+                        <h5 class="modal-title">Editar Camisa</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -219,6 +229,15 @@
                             <input type="text" maxlength="100" class="form-control" name="talla" id="tallaEditar"
                                 placeholder="" pattern="(\d?[a-zA-Z]{1,3},\s?)*(\d?[a-zA-Z]{1,3})" required>
                             <label for="talla">Tallas</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select name="sexo" class="form-select" required id="sexoEditar">
+                                <option value="">Seleccione un Sexo</option>
+                                <option value="Mujer">Mujer</option>
+                                <option value="Hombre">Hombre</option>
+                                <option value="Unisex">Unisex</option>
+                            </select>
+                            <label for="sexo">sexo</label>
                         </div>
                         <div class="form-floating mb-3">
                             <select name="tipo" class="form-select" required id="tipoEditar">

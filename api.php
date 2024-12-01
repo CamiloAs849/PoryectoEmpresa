@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if (mysqli_num_rows($result) === 1) {
                 echo json_encode($data);
             } else {
-                echo json_encode("Calzado no encontrado");
+                echo json_encode("dato en la tabla $tabla no encotrado");
             }
         } else {
             $sql = "SELECT * FROM $tabla";
@@ -139,6 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $precio = $_POST['precio'];
             $talla = strtoupper($_POST['talla']);
             $tipo = $_POST['tipo'];
+            $sexo = $_POST['sexo'];
             $etiqueta = $_POST['etiqueta'];
             $color = $_POST['color'];
             if (isset($_FILES['imagen']['name']) && $_FILES['imagen']['name'] != '') {
@@ -153,9 +154,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             } else {
                 $nombreImagen = $_POST['nombreImagen'];
             }
-            $sql = "UPDATE camisas SET NombreCamiseta =?, Precio =?, Talla =?, Tipo =?, Etiqueta =?, Imagen =?, Color =? WHERE ID = $id";
+            $sql = "UPDATE camisas SET NombreCamiseta =?, Precio =?, Talla =?, Sexo=?, Tipo =?, Etiqueta =?, Imagen =?, Color =? WHERE ID = $id";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('sssssss', $nombre, $precio, $talla, $tipo, $etiqueta, $nombreImagen, $color);
+            $stmt->bind_param('ssssssss', $nombre, $precio, $talla, $sexo, $tipo, $etiqueta, $nombreImagen, $color);
             if ($stmt->execute()) {
                 echo json_encode("Camisa actualizada correctamente");
             } else {
@@ -168,6 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $tipo = $_POST['tipo'];
             $etiqueta = $_POST['etiqueta'];
             $color = $_POST['color'];
+            $sexo = $_POST['sexo'];
             $imagen = $_FILES['imagen'];
             $nombreImagen = $imagen['name'];
             $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/camisas/' . $nombreImagen;
@@ -181,13 +183,245 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 echo json_encode("La camisa ya existe");
             } else {
                 if (move_uploaded_file($imagen['tmp_name'], $path)) {
-                    $sql = "INSERT INTO camisas (NombreCamiseta, Precio, Talla, Tipo, Imagen, Etiqueta, Color) VALUES (?,?,?,?,?,?,?)";
+                    $sql = "INSERT INTO camisas (NombreCamiseta, Precio, Talla, Sexo, Tipo, Imagen, Etiqueta, Color) VALUES (?,?,?,?,?,?,?,?)";
                     $stmt = $conn->prepare($sql);
-                    $stmt->bind_param('sssssss', $nombre, $precio, $talla, $tipo, $nombreImagen, $etiqueta, $color);
+                    $stmt->bind_param('ssssssss', $nombre, $precio, $talla, $sexo, $tipo, $nombreImagen, $etiqueta, $color);
                     if ($stmt->execute()) {
                         echo json_encode("Camisa agregada correctamente");
                     } else {
                         echo json_encode("Error al agregar la camisa");
+                    }
+                } else {
+                    echo json_encode("Error al subir la imagen");
+                }
+            }
+        }
+    } else if (isset($_POST['pantalon'])) {
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+            $nombre = $_POST['nombre'];
+            $precio = $_POST['precio'];
+            $talla = $_POST['talla'];
+            $tipo = $_POST['tipo'];
+            $etiqueta = $_POST['etiqueta'];
+            $sexo = $_POST['sexo'];
+            $color = $_POST['color'];
+            if (isset($_FILES['imagen']['name']) && $_FILES['imagen']['name'] != '') {
+                unlink('./imagenes/pantalones/' . $_POST['nombreImagen']);
+                $imagen = $_FILES['imagen'];
+                $nombreImagen = $imagen['name'];
+                $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/pantalones/' . $nombreImagen;
+                if (!move_uploaded_file($imagen['tmp_name'], $path)) {
+                    echo json_encode("Error al subir la imagen");
+                } else {
+                }
+            } else {
+                $nombreImagen = $_POST['nombreImagen'];
+            }
+            $sql = "UPDATE pantalones SET NombrePantalon =?, Precio =?, Talla =?, Tipo =?, Sexo=?, Etiqueta =?, Imagen =?, Color =? WHERE ID = $id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('ssssssss', $nombre, $precio, $talla, $tipo, $sexo, $etiqueta, $nombreImagen, $color);
+            if ($stmt->execute()) {
+                echo json_encode("Pantalón actualizado correctamente");
+            } else {
+                echo json_encode("Error al actualizar el pantalón");
+            }
+        } else {
+            $nombre = $_POST['nombre'];
+            $precio = $_POST['precio'];
+            $talla = $_POST['talla'];
+            $tipo = $_POST['tipo'];
+            $etiqueta = $_POST['etiqueta'];
+            $color = $_POST['color'];
+            $sexo = $_POST['sexo'];
+            $imagen = $_FILES['imagen'];
+            $nombreImagen = $imagen['name'];
+            $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/pantalones/' . $nombreImagen;
+
+            $sql = "SELECT * FROM pantalones WHERE NombrePantalon =?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $nombre);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if (mysqli_num_rows($result) > 0) {
+                echo json_encode("El pantalón ya existe");
+            } else {
+                if (move_uploaded_file($imagen['tmp_name'], $path)) {
+                    $sql = "INSERT INTO pantalones (NombrePantalon, Precio, Talla, Tipo, Sexo, Imagen, Etiqueta, Color) VALUES (?,?,?,?,?,?,?,?)";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param('ssssssss', $nombre, $precio, $talla, $tipo, $sexo, $nombreImagen, $etiqueta, $color);
+                    if ($stmt->execute()) {
+                        echo json_encode("Pantalón agregado correctamente");
+                    } else {
+                        echo json_encode("Error al agregar el pantalón");
+                    }
+                } else {
+                    echo json_encode("Error al subir la imagen");
+                }
+            }
+        }
+    } else if (isset($_POST['reloj'])) {
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+            $nombre = $_POST['nombre'];
+            $precio = $_POST['precio'];
+            $etiqueta = $_POST['etiqueta'];
+            if (isset($_FILES['imagen']['name']) && $_FILES['imagen']['name'] != '') {
+                unlink('./imagenes/relojes/' . $_POST['nombreImagen']);
+                $imagen = $_FILES['imagen'];
+                $nombreImagen = $imagen['name'];
+                $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/relojes/' . $nombreImagen;
+                if (!move_uploaded_file($imagen['tmp_name'], $path)) {
+                    echo json_encode("Error al subir la imagen");
+                } else {
+                }
+            } else {
+                $nombreImagen = $_POST['nombreImagen'];
+            }
+            $sql = "UPDATE relojes SET NombreReloj =?, Precio =?, Etiqueta =?, Imagen =? WHERE ID = $id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('ssss', $nombre, $precio, $etiqueta, $nombreImagen);
+            if ($stmt->execute()) {
+                echo json_encode("Reloj actualizado correctamente");
+            } else {
+                echo json_encode("Error al actualizar el reloj");
+            }
+        } else {
+            $nombre = $_POST['nombre'];
+            $precio = $_POST['precio'];
+            $etiqueta = $_POST['etiqueta'];
+            $imagen = $_FILES['imagen'];
+            $nombreImagen = $imagen['name'];
+            $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/relojes/' . $nombreImagen;
+
+            $sql = "SELECT * FROM relojes WHERE NombreReloj =?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $nombre);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if (mysqli_num_rows($result) > 0) {
+                echo json_encode("El reloj ya existe");
+            } else {
+                if (move_uploaded_file($imagen['tmp_name'], $path)) {
+                    $sql = "INSERT INTO relojes (NombreReloj, Precio, Etiqueta, Imagen) VALUES (?,?,?,?)";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param('ssss', $nombre, $precio, $etiqueta, $nombreImagen);
+                    if ($stmt->execute()) {
+                        echo json_encode("Reloj agregado correctamente");
+                    } else {
+                        echo json_encode("Error al agregar el reloj");
+                    }
+                } else {
+                    echo json_encode("Error al subir la imagen");
+                }
+            }
+        }
+    } else if (isset($_POST['gafas'])) {
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+            $nombre = $_POST['nombre'];
+            $precio = $_POST['precio'];
+            $etiqueta = $_POST['etiqueta'];
+            if (isset($_FILES['imagen']['name']) && $_FILES['imagen']['name'] != '') {
+                unlink($path . $_POST['nombreImagen']);
+                $imagen = $_FILES['imagen'];
+                $nombreImagen = $imagen['name'];
+                $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/gafas/' . $nombreImagen;
+                if (!move_uploaded_file($imagen['tmp_name'], $path)) {
+                    echo json_encode("Error al subir la imagen");
+                } else {
+                }
+            } else {
+                $nombreImagen = $_POST['nombreImagen'];
+            }
+            $sql = "UPDATE gafas SET NombreGafas =?, Precio =?, Etiqueta =?, Imagen =? WHERE ID = $id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('ssss', $nombre, $precio, $etiqueta, $nombreImagen);
+            if ($stmt->execute()) {
+                echo json_encode("Gafas actualizadas correctamente");
+            } else {
+                echo json_encode("Error al actualizar las gafas");
+            }
+        } else {
+            $nombre = $_POST['nombre'];
+            $precio = $_POST['precio'];
+            $etiqueta = $_POST['etiqueta'];
+            $imagen = $_FILES['imagen'];
+            $nombreImagen = $imagen['name'];
+            $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/gafas/' . $nombreImagen;
+            $sql = "SELECT * FROM gafas WHERE NombreGafas =?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $nombre);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if (mysqli_num_rows($result) > 0) {
+                echo json_encode("Las gafas ya existe");
+            } else {
+                if (move_uploaded_file($imagen['tmp_name'], $path)) {
+                    $sql = "INSERT INTO gafas (NombreGafas, Precio, Etiqueta, Imagen) VALUES (?,?,?,?)";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param('ssss', $nombre, $precio, $etiqueta, $nombreImagen);
+                    if ($stmt->execute()) {
+                        echo json_encode("Gafas agregadas correctamente");
+                    } else {
+                        echo json_encode("Error al agregar las gafas");
+                    }
+                } else {
+                    echo json_encode("Error al subir la imagen");
+                }
+            }
+        }
+    } else if (isset($_POST['perfume'])) {
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+            $nombre = $_POST['nombre'];
+            $precio = $_POST['precio'];
+            $tipo = $_POST['tipo'];
+            $etiqueta = $_POST['etiqueta'];
+            if (isset($_FILES['imagen']['name']) && $_FILES['imagen']['name'] != '') {
+                unlink($path . $_POST['nombreImagen']);
+                $imagen = $_FILES['imagen'];
+                $nombreImagen = $imagen['name'];
+                $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/perfumes/' . $nombreImagen;
+                if (!move_uploaded_file($imagen['tmp_name'], $path)) {
+                    echo json_encode("Error al subir la imagen");
+                } else {
+                }
+            } else {
+                $nombreImagen = $_POST['nombreImagen'];
+            }
+            $sql = "UPDATE perfumes SET NombrePerfume =?, Tipo=?, Precio =?, Etiqueta =?, Imagen =? WHERE ID = $id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('sssss', $nombre, $tipo, $precio,  $etiqueta, $nombreImagen);
+            if ($stmt->execute()) {
+                echo json_encode("Perfume actualizado correctamente");
+            } else {
+                echo json_encode("Error al actualizar el perfume");
+            }
+        } else {
+            $nombre = $_POST['nombre'];
+            $precio = $_POST['precio'];
+            $etiqueta = $_POST['etiqueta'];
+            $tipo = $_POST['tipo'];
+            $imagen = $_FILES['imagen'];
+            $nombreImagen = $imagen['name'];
+            $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/perfumes/' . $nombreImagen;
+            $sql = "SELECT * FROM perfumes WHERE NombrePerfume =?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $nombre);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if (mysqli_num_rows($result) > 0) {
+                echo json_encode("El perfume ya existe");
+            } else {
+                if (move_uploaded_file($imagen['tmp_name'], $path)) {
+                    $sql = "INSERT INTO perfumes (NombrePerfume, Precio, Tipo, Etiqueta, Imagen) VALUES (?,?,?,?,?)";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param('sssss', $nombre, $precio, $tipo, $etiqueta, $nombreImagen);
+                    if ($stmt->execute()) {
+                        echo json_encode("Perfume agregado correctamente");
+                    } else {
+                        echo json_encode("Error al agregar el perfume");
                     }
                 } else {
                     echo json_encode("Error al subir la imagen");

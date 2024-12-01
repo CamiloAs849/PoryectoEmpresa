@@ -34,6 +34,7 @@ function cargarCamisas() {
                     <td>$ ${Intl.NumberFormat().format(camisa.Precio)}</td>
                     <td>${camisa.Talla}</td>
                     <td>${camisa.Color}</td>
+                    <td>${camisa.Sexo}</td>
                     <td>${camisa.Tipo}</td>
                     <td>${camisa.Etiqueta}</td>
                     <td><img src='../imagenes/camisas/${camisa.Imagen}' width="100px"</td>
@@ -150,6 +151,7 @@ function editarCamisa(id) {
             document.getElementById('precioEditar').value = data.Precio;
             document.getElementById('tallaEditar').value = data.Talla;
             document.getElementById('colorEditar').value = data.Color;
+            document.getElementById('sexoEditar').value = data.Sexo;
             document.getElementById('tipoEditar').value = data.Tipo;
             var imagen = document.getElementById('ImagenEditar');
             document.getElementById('nombreImagen').value = data.Imagen
