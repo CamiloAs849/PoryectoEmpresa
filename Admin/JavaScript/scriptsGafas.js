@@ -26,6 +26,7 @@ function cargarGafas() {
             const tbody = document.getElementById('tbody');
             data.forEach(gafas => {
                 var tr = document.createElement('tr');
+                tr.classList.add('tr');
                 tr.innerHTML = `
                 <td>${gafas.NombreGafas}</td>
                 <td>${Intl.NumberFormat().format(gafas.Precio)}</td>
@@ -131,7 +132,15 @@ form.addEventListener('submit', event => {
                         timer: 1500,
                         timerProgressBar: true
                     }).then(function () {
-                        window.location.reload();
+                        var table = $('#tablaProductos').DataTable();
+                        table.destroy();
+                        var tr = document.querySelectorAll('.tr');
+                        tr.forEach(element => {
+                            element.remove();
+                        });
+                        cargarGafas();
+                        $('#crearGafas').modal('hide');
+                        form.reset();
                     });
                 }
             })
@@ -188,7 +197,16 @@ formEditar.addEventListener('submit', event => {
                         timer: 1500,
                         timerProgressBar: true
                     }).then(function () {
-                        window.location.reload();
+                        var table = $('#tablaProductos').DataTable();
+                        table.destroy();
+                        var tr = document.querySelectorAll('.tr');
+                        tr.forEach(element => {
+                            element.remove();
+                        });
+                        cargarGafas();
+                        $('#EditarGafas').modal('hide');
+                        formEditar.reset();
+                        document.getElementById('ImagenEditar').src = '';
                     });
                 }
             })
@@ -250,7 +268,13 @@ function eliminarGafas(id) {
                             timer: 1500,
                             timerProgressBar: true
                         }).then(function () {
-                            window.location.reload();
+                            var table = $('#tablaProductos').DataTable();
+                            table.destroy();
+                            var tr = document.querySelectorAll('.tr');
+                            tr.forEach(element => {
+                                element.remove();
+                            });
+                            cargarGafas();
                         });
                     }
 

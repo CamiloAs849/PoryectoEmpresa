@@ -26,6 +26,7 @@ function cargarPantalon() {
             const tbody = document.getElementById('tbody');
             data.forEach(pantalon => {
                 var tr = document.createElement('tr');
+                tr.classList.add('tr');
                 tr.innerHTML = `
                 <td>${pantalon.NombrePantalon}</td>
                 <td>$ ${Intl.NumberFormat().format(pantalon.Precio)}</td>
@@ -135,7 +136,15 @@ form.addEventListener('submit', event => {
                         timer: 1500,
                         timerProgressBar: true
                     }).then(function () {
-                        window.location.reload();
+                        var table = $('#tablaProductos').DataTable();
+                        table.destroy();
+                        var tr = document.querySelectorAll('.tr');
+                        tr.forEach(element => {
+                            element.remove();
+                        });
+                        cargarPantalon();
+                        $('#crearPantalon').modal('hide');
+                        form.reset();
                     });
                 }
             })
@@ -192,7 +201,15 @@ formEditar.addEventListener('submit', event => {
                         timer: 1500,
                         timerProgressBar: true
                     }).then(function () {
-                        window.location.reload();
+                        var table = $('#tablaProductos').DataTable();
+                        table.destroy();
+                        var tr = document.querySelectorAll('.tr');
+                        tr.forEach(element => {
+                            element.remove();
+                        });
+                        cargarPantalon();
+                        $('#EditarPantalon').modal('hide');
+                        formEditar.reset();
                     });
                 }
             })
@@ -258,7 +275,15 @@ function eliminarPantalon(id) {
                             timer: 1500,
                             timerProgressBar: true
                         }).then(function () {
-                            window.location.reload();
+                            var table = $('#tablaProductos').DataTable();
+                            table.destroy();
+                            var tr = document.querySelectorAll('.tr');
+                            tr.forEach(element => {
+                                element.remove();
+                            });
+                            cargarPantalon();
+                            $('#crearPantalon').modal('hide');
+                            form.reset();
                         });
                     }
 

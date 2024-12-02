@@ -26,6 +26,7 @@ function cargarRelojes() {
             const tbody = document.getElementById('tbody');
             data.forEach(reloj => {
                 var tr = document.createElement('tr');
+                tr.classList.add('tr')
                 tr.innerHTML = `<tr>
                                     <td>${reloj.NombreReloj}</td>
                                     <td>$ ${Intl.NumberFormat().format(reloj.Precio)}</td>
@@ -131,7 +132,15 @@ form.addEventListener('submit', event => {
                         timer: 1500,
                         timerProgressBar: true
                     }).then(function () {
-                        window.location.reload();
+                        var table = $('#tablaProductos').DataTable();
+                        table.destroy();
+                        var tr = document.querySelectorAll('.tr');
+                        tr.forEach(element => {
+                            element.remove();
+                        });
+                        cargarRelojes();
+                        $('#crearReloj').modal('hide');
+                        form.reset();
                     });
                 }
             })
@@ -188,7 +197,15 @@ formEditar.addEventListener('submit', event => {
                         timer: 1500,
                         timerProgressBar: true
                     }).then(function () {
-                        window.location.reload();
+                        var table = $('#tablaProductos').DataTable();
+                        table.destroy();
+                        var tr = document.querySelectorAll('.tr');
+                        tr.forEach(element => {
+                            element.remove();
+                        });
+                        cargarRelojes();
+                        $('#EditarReloj').modal('hide');
+                        formEditar.reset();
                     });
                 }
             })
@@ -250,7 +267,13 @@ function eliminarReloj(id) {
                             timer: 1500,
                             timerProgressBar: true
                         }).then(function () {
-                            window.location.reload();
+                            var table = $('#tablaProductos').DataTable();
+                            table.destroy();
+                            var tr = document.querySelectorAll('.tr');
+                            tr.forEach(element => {
+                                element.remove();
+                            });
+                            cargarRelojes();
                         });
                     }
 

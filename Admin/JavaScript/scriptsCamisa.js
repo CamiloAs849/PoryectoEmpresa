@@ -29,6 +29,7 @@ function cargarCamisas() {
             const tbody = document.getElementById("tbody");
             data.forEach(camisa => {
                 var tr = document.createElement("tr");
+                tr.classList.add("tr");
                 tr.innerHTML = `
                     <td>${camisa.NombreCamiseta}</td>
                     <td>$ ${Intl.NumberFormat().format(camisa.Precio)}</td>
@@ -133,7 +134,15 @@ form.addEventListener('submit', event => {
                         timer: 1500,
                         timerProgressBar: true
                     }).then(function () {
-                        window.location.reload();
+                        var table = $('#tablaProductos').DataTable();
+                        table.destroy();
+                        var tr = document.querySelectorAll('.tr');
+                        tr.forEach(element => {
+                            element.remove();
+                        });
+                        $('#crearCamisa').modal('hide');
+                        form.reset();
+                        cargarCamisas();
                     });
                 }
             })
@@ -208,7 +217,16 @@ formEditar.addEventListener('submit', event => {
                         timer: 1500,
                         timerProgressBar: true
                     }).then(function () {
-                        window.location.reload();
+                        var table = $('#tablaProductos').DataTable();
+                        table.destroy();
+                        var tr = document.querySelectorAll('.tr');
+                        tr.forEach(element => {
+                            element.remove();
+                        });
+                        $('#EditarCamisa').modal('hide');
+                        formEditar.reset();
+                        document.getElementById('ImagenEditar').src = '';
+                        cargarCamisas();
                     });
                 }
             })
@@ -254,7 +272,13 @@ function eliminarCamisa(id) {
                             timer: 1500,
                             timerProgressBar: true
                         }).then(function () {
-                            window.location.reload();
+                            var table = $('#tablaProductos').DataTable();
+                            table.destroy();
+                            var tr = document.querySelectorAll('.tr');
+                            tr.forEach(element => {
+                                element.remove();
+                            });
+                            cargarCamisas();
                         });
                     }
 

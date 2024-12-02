@@ -26,7 +26,8 @@ function cargarCalzado() {
             const tbody = document.getElementById('tbody');
             data.forEach(producto => {
                 var tr = document.createElement('tr');
-                tr.innerHTML = `<tr>
+                tr.classList.add('tr')
+                tr.innerHTML = `
                                     <td>${producto.NombreCalzado}</td>
                                     <td>$ ${Intl.NumberFormat().format(producto.Precio)}</td>
                                     <td>${producto.Talla}</td>
@@ -38,7 +39,7 @@ function cargarCalzado() {
                                         <button class="btn btn-sm btn-danger" onclick="eliminarCalzado(${producto.ID})">Eliminar</button>
                                         </div>
                                     </td>
-                                </tr>`;
+                                `;
                 tbody.appendChild(tr);
             });
 
@@ -152,7 +153,15 @@ form.addEventListener('submit', event => {
                         timer: 1500,
                         timerProgressBar: true
                     }).then(function () {
-                        window.location.reload();
+                        var table = $('#tablaProductos').DataTable();
+                        table.destroy();
+                        var tr = document.querySelectorAll('.tr');
+                        tr.forEach(element => {
+                            element.remove();
+                        });
+                        cargarCalzado();
+                        $('#crearCalzado').modal('hide');
+                        form.reset();
                     });
                 }
             })
@@ -209,7 +218,16 @@ formEditar.addEventListener('submit', event => {
                         timer: 1500,
                         timerProgressBar: true
                     }).then(function () {
-                        window.location.reload();
+                        var table = $('#tablaProductos').DataTable();
+                        table.destroy();
+                        var tr = document.querySelectorAll('.tr');
+                        tr.forEach(element => {
+                            element.remove();
+                        });
+                        cargarCalzado();
+                        $('#EditarCalzado').modal('hide');
+                        formEditar.reset();
+                        document.getElementById('ImagenEditar').src = '';
                     });
                 }
 
@@ -277,7 +295,13 @@ function eliminarCalzado(id) {
                             timer: 1500,
                             timerProgressBar: true
                         }).then(function () {
-                            window.location.reload();
+                            var table = $('#tablaProductos').DataTable();
+                            table.destroy();
+                            var tr = document.querySelectorAll('.tr');
+                            tr.forEach(element => {
+                                element.remove();
+                            });
+                            cargarCalzado();
                         });
                     }
 
@@ -285,7 +309,6 @@ function eliminarCalzado(id) {
         }
     });
 }
-
 
 
 

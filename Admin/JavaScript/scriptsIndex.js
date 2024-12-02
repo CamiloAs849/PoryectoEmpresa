@@ -8,7 +8,7 @@ function cargarCalzado() {
                 if (zapato.Etiqueta == 'Agotado') {
                     var textoB = '<a class="btn btn-danger" role="button">Agotado!</a>';
                 } else {
-                    var textoB = '<a class="btn btn-blank" href="" target="_blank" role="button">Comprar ya!</a>'
+                    var textoB = `<a class="btn btn-blank" href="https://api.whatsapp.com/send?phone=573053396000&text=Hola%2C%20estoy%20interesado%20en%20los ${zapato.NombreCalzado}" target="_blank" role="button">Comprar ya!</a>`
                 }
                 div.classList.add("col-xs-12", "col-sm-4", `${zapato.Tipo.split(" ").join("")}`, `${zapato.Etiqueta.split(" ").join("")}`
                 );
@@ -36,7 +36,7 @@ function cargarCamisas() {
                 if (camisa.Etiqueta == 'Agotado') {
                     var textoB = '<a class="btn btn-danger" role="button">Agotado!</a>';
                 } else {
-                    var textoB = '<a class="btn btn-blank" href="" target="_blank" role="button">Comprar ya!</a>'
+                    var textoB = `<a class="btn btn-blank" href="https://api.whatsapp.com/send?phone=573053396000&text=Hola%2C%20estoy%20interesado%20en%20la ${camisa.NombreCamiseta} " target="_blank" role="button">Comprar ya!</a>`
                 }
                 div.classList.add("col-xs-12", "col-sm-4", `${camisa.Sexo}`, `${camisa.Tipo.split(" ").join("")}`, `${camisa.Etiqueta.split(" ").join("")}`);
                 div.innerHTML = `<div class="portfolio_single_content">
@@ -64,7 +64,7 @@ function cargarPantalones() {
                 if (pantalon.Etiqueta == 'Agotado') {
                     var textoB = '<a class="btn btn-danger" role="button">Agotado!</a>';
                 } else {
-                    var textoB = '<a class="btn btn-blank" href="" target="_blank" role="button">Comprar ya!</a>'
+                    var textoB = `<a class="btn btn-blank" href="https://api.whatsapp.com/send?phone=573053396000&text=Hola%2C%20estoy%20interesado%20en el ${pantalon.NombrePantalon}" target="_blank" role="button">Comprar ya!</a>`
                 }
                 div.classList.add("col-xs-12", "col-sm-4", `${pantalon.Sexo}`, `${pantalon.Tipo.split(" ").join("")}`, `${pantalon.Etiqueta.split(" ").join("")}`);
                 div.innerHTML = `<div class="portfolio_single_content">
@@ -90,7 +90,7 @@ function cargarRelojes() {
                 if (reloj.Etiqueta == 'Agotado') {
                     var textoB = '<a class="btn btn-danger" role="button">Agotado!</a>';
                 } else {
-                    var textoB = '<a class="btn btn-blank" href="" target="_blank" role="button">Comprar ya!</a>'
+                    var textoB = `<a class="btn btn-blank" href="https://api.whatsapp.com/send?phone=573053396000&text=Hola%2C%20estoy%20interesado%20en el ${reloj.NombreReloj}" target="_blank" role="button">Comprar ya!</a>`
                 }
                 div.classList.add("col-xs-12", "col-sm-4", `${reloj.Etiqueta.split(" ").join("")}`);
                 div.innerHTML = `<div class="portfolio_single_content">
@@ -114,7 +114,7 @@ function cargarGafas() {
                 if (gafas.Etiqueta == 'Agotado') {
                     var textoB = '<a class="btn btn-danger" role="button">Agotado!</a>';
                 } else {
-                    var textoB = '<a class="btn btn-blank" href="" target="_blank" role="button">Comprar ya!</a>'
+                    var textoB = `<a class="btn btn-blank" href="https://api.whatsapp.com/send?phone=573053396000&text=Hola%2C%20estoy%20interesado%20en las ${gafas.NombreGafas}" target="_blank" role="button">Comprar ya!</a>`
                 }
                 div.classList.add("col-xs-12", "col-sm-4", `${gafas.Etiqueta.split(" ").join("")}`);
                 div.innerHTML = `<div class="portfolio_single_content">
@@ -138,7 +138,7 @@ function cargarPerfumes() {
                 if (perfume.Etiqueta == 'Agotado') {
                     var textoB = '<a class="btn btn-danger" role="button">Agotado!</a>';
                 } else {
-                    var textoB = '<a class="btn btn-blank" href="" target="_blank" role="button">Comprar ya!</a>'
+                    var textoB = `<a class="btn btn-blank" href="https://api.whatsapp.com/send?phone=573053396000&text=Hola%2C%20estoy%20interesado%20en el ${perfume.NombrePerfume}" target="_blank" role="button">Comprar ya!</a>`
                 }
                 div.classList.add("col-xs-12", "col-sm-4", `${perfume.Tipo.split(".").join("_")}`, `${perfume.Etiqueta.split(" ").join("")}`);
                 div.innerHTML = `<div class="portfolio_single_content">

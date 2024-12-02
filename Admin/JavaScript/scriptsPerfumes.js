@@ -26,6 +26,7 @@ function cargarPerfumes() {
             const tbody = document.getElementById('tbody');
             data.forEach(perfume => {
                 var tr = document.createElement('tr');
+                tr.classList.add('tr');
                 tr.innerHTML = `
                     <td>${perfume.NombrePerfume}</td>
                     <td>${Intl.NumberFormat().format(perfume.Precio)}</td>
@@ -130,7 +131,15 @@ form.addEventListener('submit', event => {
                         timer: 1500,
                         timerProgressBar: true
                     }).then(function () {
-                        window.location.reload();
+                        var table = $('#tablaProductos').DataTable();
+                        table.destroy();
+                        var tr = document.querySelectorAll('.tr');
+                        tr.forEach(element => {
+                            element.remove();
+                        });
+                        cargarPerfumes();
+                        $('#crearPerfume').modal('hide');
+                        form.reset();
                     });
                 }
             })
@@ -187,7 +196,16 @@ formEditar.addEventListener('submit', event => {
                         timer: 1500,
                         timerProgressBar: true
                     }).then(function () {
-                        window.location.reload();
+                        var table = $('#tablaProductos').DataTable();
+                        table.destroy();
+                        var tr = document.querySelectorAll('.tr');
+                        tr.forEach(element => {
+                            element.remove();
+                        });
+                        cargarPerfumes();
+                        $('#EditarPerfume').modal('hide');
+                        formEditar.reset();
+                        document.getElementById('ImagenEditar').src = '';
                     });
                 }
             })
@@ -250,7 +268,13 @@ function eliminarPerfume(id) {
                             timer: 1500,
                             timerProgressBar: true
                         }).then(function () {
-                            window.location.reload();
+                            var table = $('#tablaProductos').DataTable();
+                            table.destroy();
+                            var tr = document.querySelectorAll('.tr');
+                            tr.forEach(element => {
+                                element.remove();
+                            });
+                            cargarPerfumes();
                         });
                     }
 
