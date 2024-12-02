@@ -32,7 +32,7 @@ function cargarGafas() {
                 <td>${gafas.Etiqueta}</td>
                 <td><img src="../imagenes/gafas/${gafas.Imagen}" width="100px"></td>
                 <td><div class="d-flex mt-4 d-flex justify-content-around">
-                <button class="btn btn-warning btn-sm" onclick="editarGafas(${gafas.ID})">Editar</button>
+                <button class="btn btn-warning btn-sm me-2" onclick="editarGafas(${gafas.ID})">Editar</button>
                     <button class="btn btn-danger btn-sm" onclick="eliminarGafas(${gafas.ID})">Eliminar</button>
                     </div>
                 </td>

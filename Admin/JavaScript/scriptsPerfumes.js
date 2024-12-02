@@ -33,7 +33,7 @@ function cargarPerfumes() {
                     <td>${perfume.Etiqueta}</td>
                     <td><img src='../imagenes/perfumes/${perfume.Imagen}' width='100px'></td>
                     <td><div class="d-flex mt-4 d-flex justify-content-around">
-                        <button type='button' onclick='editarPerfume(${perfume.ID})' class='btn btn-warning'>Editar</button>
+                        <button type='button' onclick='editarPerfume(${perfume.ID})' class='btn me-2 btn-warning'>Editar</button>
                         <button type='button' onclick='eliminarPerfume(${perfume.ID})' class='btn btn-danger'>Eliminar</button>
                         </div>
                     </td>

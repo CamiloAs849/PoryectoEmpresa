@@ -32,7 +32,7 @@ function cargarRelojes() {
                                     <td>${reloj.Etiqueta}</td>
                                     <td><img src='../imagenes/relojes/${reloj.Imagen}' width="100px"</td>
                                     <td><div class="d-flex mt-4 d-flex justify-content-around">
-                                        <button class="btn btn-warning btn-sm" onclick="editarReloj(${reloj.ID})">Editar</button>
+                                        <button class="btn btn-warning btn-sm me-2" onclick="editarReloj(${reloj.ID})">Editar</button>
                                         <button class="btn btn-danger btn-sm" onclick="eliminarReloj(${reloj.ID})">Eliminar</button>
                                         </div>
                                     </td>
