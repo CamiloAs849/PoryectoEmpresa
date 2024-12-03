@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: sql300.infinityfree.com
--- Tiempo de generación: 02-12-2024 a las 07:21:47
--- Versión del servidor: 10.6.19-MariaDB
--- Versión de PHP: 7.2.22
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 03-12-2024 a las 20:39:44
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-
-SET AUTOCOMMIT = 0;
 
 START TRANSACTION;
 
@@ -25,7 +23,7 @@ SET time_zone = "+00:00";
 ;
 
 --
--- Base de datos: `if0_37829184_productos`
+-- Base de datos: `productos`
 --
 
 -- --------------------------------------------------------
@@ -92,7 +90,7 @@ VALUES (
         '27',
         'De niño',
         '245537-1600-1600.webp',
-        'En Promocion'
+        'Nuevo'
     ),
     (
         22,
@@ -169,7 +167,7 @@ VALUES (
         'Nacional',
         'Agotado',
         'camiseta-oversize-manga-corta-con-estampacion-college.webp',
-        'Unisex'
+        'Hombre'
     );
 
 -- --------------------------------------------------------
@@ -409,6 +407,54 @@ INSERT INTO
     `usuario` (`ID`, `Documento`, `Password`)
 VALUES (1, '1033179802', '1234');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vapeadores`
+--
+
+CREATE TABLE `vapeadores` (
+    `ID` int(11) NOT NULL,
+    `NombreVapeador` varchar(255) NOT NULL,
+    `Precio` int(11) NOT NULL,
+    `Etiqueta` varchar(255) NOT NULL,
+    `Imagen` varchar(255) NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `vapeadores`
+--
+
+INSERT INTO
+    `vapeadores` (
+        `ID`,
+        `NombreVapeador`,
+        `Precio`,
+        `Etiqueta`,
+        `Imagen`
+    )
+VALUES (
+        5,
+        'Veev Now Blue Raspberry 3.5% P4 E-cig',
+        25000,
+        'Nuevo',
+        '369193-300-300.webp'
+    ),
+    (
+        6,
+        'Veev Now Mango 3.5% 5ml P4-cig',
+        45000,
+        'En Promocion',
+        '369212-300-300.webp'
+    ),
+    (
+        7,
+        'Veev Now Blue mint 3.5% 5ml P4 E-cig',
+        45000,
+        'Agotado',
+        '369209-800-auto.webp'
+    );
+
 --
 -- Índices para tablas volcadas
 --
@@ -449,6 +495,11 @@ ALTER TABLE `relojes` ADD PRIMARY KEY (`ID`);
 ALTER TABLE `usuario` ADD PRIMARY KEY (`ID`);
 
 --
+-- Indices de la tabla `vapeadores`
+--
+ALTER TABLE `vapeadores` ADD PRIMARY KEY (`ID`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -457,42 +508,42 @@ ALTER TABLE `usuario` ADD PRIMARY KEY (`ID`);
 --
 ALTER TABLE `calzado`
 MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 25;
+AUTO_INCREMENT = 36;
 
 --
 -- AUTO_INCREMENT de la tabla `camisas`
 --
 ALTER TABLE `camisas`
 MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 7;
+AUTO_INCREMENT = 8;
 
 --
 -- AUTO_INCREMENT de la tabla `gafas`
 --
 ALTER TABLE `gafas`
 MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 5;
+AUTO_INCREMENT = 8;
 
 --
 -- AUTO_INCREMENT de la tabla `pantalones`
 --
 ALTER TABLE `pantalones`
 MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 7;
+AUTO_INCREMENT = 8;
 
 --
 -- AUTO_INCREMENT de la tabla `perfumes`
 --
 ALTER TABLE `perfumes`
 MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 9;
+AUTO_INCREMENT = 10;
 
 --
 -- AUTO_INCREMENT de la tabla `relojes`
 --
 ALTER TABLE `relojes`
 MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,
-AUTO_INCREMENT = 5;
+AUTO_INCREMENT = 7;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -500,6 +551,13 @@ AUTO_INCREMENT = 5;
 ALTER TABLE `usuario`
 MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,
 AUTO_INCREMENT = 2;
+
+--
+-- AUTO_INCREMENT de la tabla `vapeadores`
+--
+ALTER TABLE `vapeadores`
+MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,
+AUTO_INCREMENT = 9;
 
 COMMIT;
 
