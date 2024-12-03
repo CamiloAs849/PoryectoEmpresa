@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -45,7 +46,6 @@
         if (localStorage.getItem("usuario")) {
             window.location.href = "./Admin/admin.html";
         }
-
         window.addEventListener("load", e => {
             const myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
             myModal.show();
@@ -97,9 +97,8 @@
                                         alerta.classList.add('visually-hidden');
                                     }, 3000);
                                 } else {
-                                    localStorage.setItem('usuario', data.AdminID);
-                                    localStorage.setItem('nombre', data.NombreUsuario);
-                                    localStorage.setItem('apellido', data.ApellidosUsuario);
+                                    localStorage.setItem('usuario', data.ID);
+                                    localStorage.setItem('doc', data.Documento);
                                     localStorage.setItem('num', 1);
 
                                     window.location.href = "./Admin/admin.html";

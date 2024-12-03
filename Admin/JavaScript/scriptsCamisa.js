@@ -1,6 +1,21 @@
 if (localStorage.getItem("usuario") == null) {
     window.location.href = "../singIn.html";
 }
+window.addEventListener("load", function () {
+    // Selecciona el elemento con la clase "page-loader"
+    const pageLoader = document.querySelector(".page-loader");
+    if (pageLoader) {
+        // Aplica la transición y oculta el elemento
+        pageLoader.style.transition = "opacity 0.6s";
+        pageLoader.style.opacity = "0";
+
+        // Espera hasta que la animación termine y oculta el elemento completamente
+        setTimeout(() => {
+            pageLoader.style.display = "none";
+        }, 600); // 600ms corresponde al tiempo de la transición
+    }
+});
+
 function LogOut() {
     Swal.fire({
         title: "¿Estás seguro de salir?",

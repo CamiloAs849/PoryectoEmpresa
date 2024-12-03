@@ -75,6 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 unlink('./imagenes/calzado/' . $_POST['nombreImagen']);
                 $imagen = $_FILES['imagen'];
                 $nombreImagen = $imagen['name'];
+                $nombreImagen = preg_replace('/\.[^.]+$/', '.webp', $nombreImagen);
                 $path = $_SERVER['DOCUMENT_ROOT'] . './imagenes/calzado/' . $nombreImagen;
                 if (!move_uploaded_file($imagen['tmp_name'], $path)) {
                     echo json_encode("Error al subir la imagen");
@@ -107,6 +108,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($result) {
                 echo json_encode("El zapato ya existe");
             } else {
+                $nombreImagen = preg_replace('/\.[^.]+$/', '.webp', $nombreImagen);
+                $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/calzado/' . $nombreImagen;
                 if (move_uploaded_file($imagen['tmp_name'], $path)) {
                     $sql = "INSERT INTO calzado (NombreCalzado, Precio, Talla, Tipo, Imagen, Etiqueta) VALUES (:nombreCalzado, :precio, :talla, :tipo, :imagen, :etiqueta)";
                     $stmt = $conn->prepare($sql);
@@ -135,6 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 unlink('./imagenes/camisas/' . $_POST['nombreImagen']);
                 $imagen = $_FILES['imagen'];
                 $nombreImagen = $imagen['name'];
+                $nombreImagen = preg_replace('/\.[^.]+$/', '.webp', $nombreImagen);
                 $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/camisas/' . $nombreImagen;
                 if (!move_uploaded_file($imagen['tmp_name'], $path)) {
                     echo json_encode("Error al subir la imagen");
@@ -169,6 +173,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($result) {
                 echo json_encode("La camisa ya existe");
             } else {
+                $nombreImagen = preg_replace('/\.[^.]+$/', '.webp', $nombreImagen);
+                $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/camisas/' . $nombreImagen;
                 if (move_uploaded_file($imagen['tmp_name'], $path)) {
                     $sql = "INSERT INTO camisas (NombreCamiseta, Precio, Talla, Sexo, Tipo, Imagen, Etiqueta, Color) VALUES (:nombreCamisa, :precio, :talla, :sexo, :tipo, :imagen, :etiqueta, :color)";
                     $stmt = $conn->prepare($sql);
@@ -196,6 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 unlink('./imagenes/pantalones/' . $_POST['nombreImagen']);
                 $imagen = $_FILES['imagen'];
                 $nombreImagen = $imagen['name'];
+                $nombreImagen = preg_replace('/\.[^.]+$/', '.webp', $nombreImagen);
                 $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/pantalones/' . $nombreImagen;
                 if (!move_uploaded_file($imagen['tmp_name'], $path)) {
                     echo json_encode("Error al subir la imagen");
@@ -230,6 +237,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($result) {
                 echo json_encode("El pantalón ya existe");
             } else {
+                $nombreImagen = preg_replace('/\.[^.]+$/', '.webp', $nombreImagen);
+                $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/pantalones/' . $nombreImagen;
                 if (move_uploaded_file($imagen['tmp_name'], $path)) {
                     $sql = "INSERT INTO pantalones (NombrePantalon, Precio, Talla, Tipo, Sexo, Imagen, Etiqueta, Color) VALUES (:nombrePantalon, :precio, :talla, :tipo, :sexo, :imagen, :etiqueta, :color)";
                     $stmt = $conn->prepare($sql);
@@ -253,6 +262,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 unlink('./imagenes/relojes/' . $_POST['nombreImagen']);
                 $imagen = $_FILES['imagen'];
                 $nombreImagen = $imagen['name'];
+                $nombreImagen = preg_replace('/\.[^.]+$/', '.webp', $nombreImagen);
                 $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/relojes/' . $nombreImagen;
                 if (!move_uploaded_file($imagen['tmp_name'], $path)) {
                     echo json_encode("Error al subir la imagen");
@@ -283,6 +293,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($result) {
                 echo json_encode("El reloj ya existe");
             } else {
+                $nombreImagen = preg_replace('/\.[^.]+$/', '.webp', $nombreImagen);
+                $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/relojes/' . $nombreImagen;
                 if (move_uploaded_file($imagen['tmp_name'], $path)) {
                     $sql = "INSERT INTO relojes (NombreReloj, Precio, Etiqueta, Imagen) VALUES (:nombre, :precio, :etiqueta, :imagen)";
                     $stmt = $conn->prepare($sql);
@@ -303,9 +315,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $precio = $_POST['precio'];
             $etiqueta = $_POST['etiqueta'];
             if (isset($_FILES['imagen']['name']) && $_FILES['imagen']['name'] != '') {
-                unlink($path . $_POST['nombreImagen']);
+                unlink('./imagenes/gafas/' . $_POST['nombreImagen']);
                 $imagen = $_FILES['imagen'];
                 $nombreImagen = $imagen['name'];
+                $nombreImagen = preg_replace('/\.[^.]+$/', '.webp', $nombreImagen);
                 $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/gafas/' . $nombreImagen;
                 if (!move_uploaded_file($imagen['tmp_name'], $path)) {
                     echo json_encode("Error al subir la imagen");
@@ -335,6 +348,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($result) {
                 echo json_encode("Las gafas ya existe");
             } else {
+                $nombreImagen = preg_replace('/\.[^.]+$/', '.webp', $nombreImagen);
+                $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/gafas/' . $nombreImagen;
+
                 if (move_uploaded_file($imagen['tmp_name'], $path)) {
                     $sql = "INSERT INTO gafas (NombreGafas, Precio, Etiqueta, Imagen) VALUES (:nombre, :precio, :etiqueta, :imagen)";
                     $stmt = $conn->prepare($sql);
@@ -356,9 +372,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $tipo = $_POST['tipo'];
             $etiqueta = $_POST['etiqueta'];
             if (isset($_FILES['imagen']['name']) && $_FILES['imagen']['name'] != '') {
-                unlink($path . $_POST['nombreImagen']);
+                unlink('./imagenes/perfumes/' . $_POST['nombreImagen']);
                 $imagen = $_FILES['imagen'];
                 $nombreImagen = $imagen['name'];
+                $nombreImagen = preg_replace('/\.[^.]+$/', '.webp', $nombreImagen);
                 $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/perfumes/' . $nombreImagen;
                 if (!move_uploaded_file($imagen['tmp_name'], $path)) {
                     echo json_encode("Error al subir la imagen");
@@ -389,6 +406,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($result) {
                 echo json_encode("El perfume ya existe");
             } else {
+                $nombreImagen = preg_replace('/\.[^.]+$/', '.webp', $nombreImagen);
+                $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/perfumes/' . $nombreImagen;
                 if (move_uploaded_file($imagen['tmp_name'], $path)) {
                     $sql = "INSERT INTO perfumes (NombrePerfume, Precio, Tipo, Etiqueta, Imagen) VALUES (:nombre, :precio, :tipo, :etiqueta, :imagen)";
                     $stmt = $conn->prepare($sql);
@@ -396,6 +415,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                         echo json_encode("Perfume agregado correctamente");
                     } else {
                         echo json_encode("Error al agregar el perfume");
+                    }
+                } else {
+                    echo json_encode("Error al subir la imagen");
+                }
+            }
+        }
+    } else if (isset($_POST['vapeador'])) {
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+            $nombre = $_POST['nombre'];
+            $precio = $_POST['precio'];
+            $etiqueta = $_POST['etiqueta'];
+            if (isset($_FILES['imagen']['name']) && $_FILES['imagen']['name'] != '') {
+                unlink('./imagenes/vapeadores/' . $_POST['nombreImagen']);
+                $imagen = $_FILES['imagen'];
+                $nombreImagen = $imagen['name'];
+                $nombreImagen = preg_replace('/\.[^.]+$/', '.webp', $nombreImagen);
+                $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/vapeadores/' . $nombreImagen;
+                if (!move_uploaded_file($imagen['tmp_name'], $path)) {
+                    echo json_encode("Error al subir la imagen");
+                } else {
+                }
+            } else {
+                $nombreImagen = $_POST['nombreImagen'];
+            }
+            $sql = "UPDATE vapeadores SET NombreVapeador =:nombre, Precio =:precio, Etiqueta =:etiqueta, Imagen =:imagen WHERE ID = $id";
+            $stmt = $conn->prepare($sql);
+            if ($stmt->execute(['nombre' => $nombre, 'precio' => $precio, 'etiqueta' => $etiqueta, 'imagen' => $nombreImagen])) {
+                echo json_encode("Vapeador actualizado correctamente");
+            } else {
+                echo json_encode("Error al actualizar el vapeador");
+            }
+        } else {
+            $nombre = $_POST['nombre'];
+            $precio = $_POST['precio'];
+            $etiqueta = $_POST['etiqueta'];
+            $imagen = $_FILES['imagen'];
+            $nombreImagen = $imagen['name'];
+            $sql = "SELECT * FROM vapeadores WHERE NombreVapeador = :nombre";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(['nombre' => $nombre]);
+            $result = $stmt->fetch();
+            if ($result) {
+                echo json_encode("El vapeador ya existe");
+            } else {
+                // remplazar la extension de la imagen a webp
+                $nombreImagen = preg_replace('/\.[^.]+$/', '.webp', $nombreImagen);
+                $path = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/vapeadores/' . $nombreImagen;
+
+                $sql = "INSERT INTO vapeadores (NombreVapeador, Precio, Etiqueta, Imagen) VALUES (:nombre, :precio, :etiqueta, :imagen)";
+                $stmt = $conn->prepare($sql);
+                if (move_uploaded_file($imagen['tmp_name'], $path)) {
+                    $sql = "INSERT INTO vapeadores (NombreVapeador, Precio, Etiqueta, Imagen) VALUES (:nombre, :precio, :etiqueta, :imagen)";
+                    $stmt = $conn->prepare($sql);
+                    if ($stmt->execute(['nombre' => $nombre, 'precio' => $precio, 'etiqueta' => $etiqueta, 'imagen' => $nombreImagen])) {
+                        echo json_encode("Vapeador agregado correctamente");
+                    } else {
+                        echo json_encode("Error al agregar el vapeador");
                     }
                 } else {
                     echo json_encode("Error al subir la imagen");

@@ -46,7 +46,8 @@
         <!--========== BEGIN HEADER ==========-->
         <header id="header" class="header-main">
             <!-- Begin Navbar -->
-            <nav id="main-navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <nav id="main-navbar" class="navbar navbar-default navbar-fixed-top" role="navigation"
+                style="background-color: purple;">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
@@ -66,10 +67,6 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <a class="page-scroll" href="body"><i class="fa-solid fa-house"></i> Inicio</a>
-                            </li>
-                            <li>
-                                <a class="page-scroll" href="#portfolio-section"><i
-                                        class="fa-solid fa-bag-shopping"></i> Productos</a>
                             </li>
                             <li>
                                 <a class="page-scroll" href="#calzado"> <i class="fa-solid fa-shoe-prints"></i>
@@ -96,6 +93,10 @@
                                     Perfumes</a>
                             </li>
                             <li>
+                                <a class="page-scroll" href="#vapeadores"> <i class="fa-solid fa-joint"></i>
+                                    Vapeadores</a>
+                            </li>
+                            <li>
                                 <a class="page-scroll" href="./singIn.html"><i class="fa-solid fa-user"></i></a>
                             </li>
                         </ul>
@@ -110,7 +111,7 @@
 
         <!-- Begin text carousel intro section -->
         <section id="text-carousel-intro-section" class="parallax" data-stellar-background-ratio="0.5"
-            style="background-image: url(img/slider-bg.jpg)">
+            style="background-image: url(./img/purple-porsche-in-tokyo.960x540.gif);">
             <div class="container">
                 <div class="caption text-center text-white" data-stellar-ratio="0.7">
                     <div id="owl-intro-text" class="owl-carousel">
@@ -273,8 +274,10 @@
                                     </ul>
                                 </div>
                                 <div class="portfolio_content">
+
                                     <div class="row" id="portfolioCalzado">
                                     </div>
+
                                 </div>
                             </div>
                             <div class="page-header text-center wow fadeInDown" id="camisas" data-wow-delay="0.4s">
@@ -442,11 +445,38 @@
                                     <div class="row" id="portfolioperfumes">
                                     </div>
                                 </div>
+                                <div class="page-header text-center wow fadeInDown" id="vapeadores"
+                                    data-wow-delay="0.4s">
+                                    <h2>Vapeadores</h2>
+                                    <div class="devider"></div>
+                                </div>
+                                <!-- End page header-->
+                                <div class="portfoloi_content_area">
+                                    <div class="portfolio_menu" id="filtersVapeadores">
+                                        <ul>
+                                            <li class="active_prot_menu">
+                                                <a href="#porfolio_menu" data-filter="*">Todos</a>
+                                            </li>
+                                            <li>
+                                                <a href="#porfolio_menu" data-filter=".Nuevo">Nuevo</a>
+                                            </li>
+                                            <li>
+                                                <a href="#porfolio_menu" data-filter=".EnPromocion">En promocion</a>
+                                            </li>
+                                            <li>
+                                                <a href="#porfolio_menu" data-filter=".Agotado">Agotado</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="portfolio_content">
+                                        <div class="row" id="portfolioVapeadores">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
         <!-- End portfolio -->
         <!-- Begin footer -->
@@ -458,7 +488,7 @@
 
     <!-- Plugins JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="./Admin/JavaScript/scriptsIndex.js"></script>
+    <script src="./scriptsIndex.js"></script>
     <script src="inc/jquery/jquery-1.11.1.min.js"></script>
     <script src="inc/bootstrap/js/bootstrap.min.js"></script>
     <script src="inc/owl-carousel/js/owl.carousel.min.js"></script>

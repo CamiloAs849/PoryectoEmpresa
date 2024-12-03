@@ -92,7 +92,7 @@ p {
   font: 14px/1.5em "Roboto";
 }
 
-.navbar-nav>li>a {
+.navbar-nav > li > a {
   font-family: "Lato", Helvetica, Arial, sans-serif;
 }
 
@@ -217,7 +217,7 @@ section {
 }
 
 /* Navbar links */
-.navbar-nav>li>a {
+.navbar-nav > li > a {
   padding: 24px 0;
   margin-left: 25px;
   text-transform: uppercase;
@@ -236,9 +236,9 @@ section {
   left: auto !important;
 }
 
-.navbar-default .navbar-nav>.open>a,
-.navbar-default .navbar-nav>.open>a:hover,
-.navbar-default .navbar-nav>.open>a:focus {
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
   background-color: transparent;
 }
 
@@ -246,17 +246,17 @@ section {
   padding: 10px 0;
 }
 
-.dropdown-menu>li>a {
+.dropdown-menu > li > a {
   padding: 4px 20px;
   text-transform: uppercase;
 }
 
-.dropdown-menu>li>a:hover,
-.dropdown-menu>li>a:focus,
-.dropdown-menu>li>a.active,
-.dropdown-menu>.active>a,
-.dropdown-menu>.active>a:hover,
-.dropdown-menu>.active>a:focus {
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-menu > li > a.active,
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
   text-decoration: none;
   background-color: transparent;
 }
@@ -286,21 +286,22 @@ section {
   font-size: 20px;
 }
 
-.navbar-default.navbar-fixed-top.navbar-shrink .container {}
+.navbar-default.navbar-fixed-top.navbar-shrink .container {
+}
 
 .navbar-fixed-top.navbar-shrink .container {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
 
-.navbar-default.navbar-fixed-top.navbar-shrink .navbar-nav>li>a {
+.navbar-default.navbar-fixed-top.navbar-shrink .navbar-nav > li > a {
   padding-top: 24px;
   padding-bottom: 24px;
 }
 
 /* Navbar transparent */
 .navbar-transparent {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgb(0, 0, 0);
 }
 
 .navbar-fixed-top.navbar-transparent .container {
@@ -313,7 +314,7 @@ section {
   padding-bottom: 30px;
 }
 
-.navbar-transparent .navbar-nav>li>a {
+.navbar-transparent .navbar-nav > li > a {
   color: #fff;
 }
 
@@ -498,7 +499,8 @@ a.rotate-box-2:hover {
 /* ===== End rotate boxes ===== */
 
 /* ===== Begin progress bar ===== */
-.skill-bar {}
+.skill-bar {
+}
 
 .progress {
   overflow: visible;
@@ -594,13 +596,17 @@ a.rotate-box-2:hover {
 /* ===== End testimonial ===== */
 
 /* ===== Begin Portfolio===== */
-.portfolio_area {}
+.portfolio_area {
+}
 
-.portfolio {}
+.portfolio {
+}
 
-.portfoloi_top {}
+.portfoloi_top {
+}
 
-.portfoloi_content_area {}
+.portfoloi_content_area {
+}
 
 .portfolio_menu {
   text-align: center;
@@ -628,7 +634,8 @@ a.rotate-box-2:hover {
   text-transform: uppercase;
 }
 
-.portfolio_content {}
+.portfolio_content {
+}
 
 .portfolio_single_content {
   position: relative;
@@ -667,7 +674,7 @@ a.rotate-box-2:hover {
   height: 100% !important;
 }
 
-.portfolio_single_content div+div {
+.portfolio_single_content div + div {
   background: none repeat scroll 0 0 rgba(255, 255, 255, 0.9);
   bottom: -100%;
   color: #ffc000;
@@ -699,6 +706,7 @@ a.rotate-box-2:hover {
 .portfolio_single_content:hover div {
   transform: scale(1);
   opacity: 1;
+  background-color: rgb(46, 0, 46);
 }
 
 .portfolio_single_content div h3 {
@@ -729,7 +737,8 @@ a.rotate-box-2:hover {
   text-transform: uppercase;
 }
 
-.portfolio_content {}
+.portfolio_content {
+}
 
 .portfolio_content {
   margin-top: 36px;
@@ -749,7 +758,8 @@ a.rotate-box-2:hover {
   background-color: rgba(0, 7, 11, 0.8);
 }
 
-.counter-up .fact {}
+.counter-up .fact {
+}
 
 .counter-up .fact.last {
   border-right: none;
@@ -867,7 +877,8 @@ a.rotate-box-2:hover {
 /* ===== Begin panels ===== */
 .panel,
 .panel-heading,
-.panel-footer {}
+.panel-footer {
+}
 
 /* ===== End panels ===== */
 
@@ -1071,7 +1082,7 @@ ul.imp-links li a {
   margin: 20px 0;
 }
 
-#subscribe>input[type="text"] {
+#subscribe > input[type="text"] {
   border: 0 none;
   color: #99abb7;
   font-style: italic;
@@ -1081,7 +1092,7 @@ ul.imp-links li a {
   height: 30px;
 }
 
-#subscribe>button[type="submit"] {
+#subscribe > button[type="submit"] {
   background: none repeat scroll 0 0 #21c2f8;
   border: 0 none;
   color: #ffffff;

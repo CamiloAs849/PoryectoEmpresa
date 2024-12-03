@@ -247,6 +247,23 @@ $(window).load(function () {
         return false;
     });
 });
+$(window).load(function () {
+    $('.portfolio_menu ul li').click(function () {
+        $('.portfolio_menu ul li').removeClass('active_prot_menu');
+        $(this).addClass('active_prot_menu');
+    });
+
+    var $container = $('#portfolioVapeadores');
+    $container.isotope({
+        itemSelector: '.col-sm-4',
+        layoutMode: 'fitRows'
+    });
+    $('#filtersVapeadores').on('click', 'a', function () {
+        var filterValue = $(this).attr('data-filter');
+        $container.isotope({ filter: filterValue });
+        return false;
+    });
+});
 
 
 
